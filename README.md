@@ -19,7 +19,8 @@ This project documents the end-to-end deployment, configuration, and operational
 * Deployed osTicket within XAMPP and resolved port conflicts between Apache and IIS.
 * Configured local database connection settings inside `config.inc.php` (`auth_type = 'cookie'`) to resolve authentication parameters and gain administrative access via phpMyAdmin.
 
-![Database Configuration](config_setup.png)
+![Database Configuration](01-phpmyadmin-database.png)
+![OSTicket Staff Login](OSTicket-Staff-login.png)
 
 ---
 
@@ -27,8 +28,8 @@ This project documents the end-to-end deployment, configuration, and operational
 * Created support agent profiles (e.g., `SuperRick005`) and configured granular role permissions to enforce least-privilege security standards.
 * Established organizational departments (e.g., *System Administration*, *Support*) for structured ticket allocation and routing.
 
-![Agent Setup](agent_setup.png)
-![Department Setup](osticket_department_setup.png)
+![osTicket Agents Creation](osTicket_agents_creation.png)
+![osTicket Department Setup](osTicket_department_setup.png)
 
 ---
 
@@ -36,7 +37,7 @@ This project documents the end-to-end deployment, configuration, and operational
 * Configured custom SLA response policies (e.g., **SEV-1 Emergency** with a 1-hour grace period) to prioritize urgent outages over routine service requests.
 * Mapped user help topics to automatically trigger SLA rules and departmental routing upon ticket creation.
 
-![SLA Configuration](sla_plans_setup.png)
+![SLA Plans Setup](SLA_plans_setup.png)
 
 ---
 
@@ -47,7 +48,7 @@ Simulated a real-world multi-ticket incoming queue to demonstrate IT Service Man
 * **High Priority (`Executive Account Issues`):** Prioritized for immediate follow-up and communication due to high organizational visibility, queued directly after critical site/hardware outage resolution.
 * **Normal Priority (`Standard Password Reset`):** Processed through standard helpdesk SLA workflow without disrupting high-impact incidents.
 
-![Ticket Triage Queue](ticket_triage_queue.png)
+![Ticket Triage Queue](Ticket_triage_queue.png)
 
 ---
 
@@ -56,7 +57,8 @@ Simulated a real-world multi-ticket incoming queue to demonstrate IT Service Man
 * **Assignment & Communication:** Logged into the Agent Control Panel (`/scp`), claimed ownership of tickets, and communicated reset instructions directly to the end-user.
 * **Resolution:** Verified ticket updates within the audit log and updated status to **Closed**.
 
-![Ticket Resolved](ticket_resolved.png)
+![Ticket Created](Ticket_created.png)
+![Ticket Resolved](Ticket_Resolved.png)
 
 ---
 
