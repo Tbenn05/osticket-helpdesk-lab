@@ -1,21 +1,22 @@
-osTicket Help Desk Lab
+# osTicket Help Desk Lab
 
-Overview
+## Overview
 
 This project documents my experience deploying osTicket in a local Windows lab environment. The goal was to get a help desk ticketing system running and troubleshoot the issues that came up during installation.
 
-Environment
+## Environment
 
-Windows virtual machine
-XAMPP
-Apache
-PHP
-MariaDB
-phpMyAdmin
-osTicket
-Setup and Troubleshooting
+- Windows virtual machine
+- XAMPP
+- Apache
+- PHP
+- MariaDB
+- phpMyAdmin
+- osTicket
 
-1. Configuring the Web Server:
+## Setup and Troubleshooting
+
+## 1. Configuring the Web Server
 
 I used XAMPP to run the services needed for osTicket. Apache initially conflicted with IIS because both were using port 80, so I configured Apache to use port 8080.
 
