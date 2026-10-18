@@ -1,63 +1,66 @@
-# osTicket Help Desk Lab
+# osTicket - Ticketing System Implementation & Lifecycle Lab
 
-## Overview
+## 📌 Project Overview
+This project documents the end-to-end deployment, configuration, and operational lifecycle management of an enterprise helpdesk ticketing system using **osTicket** hosted on a local web server stack. The lab demonstrates core IT Service Management (ITSM) principles including Role-Based Access Control (RBAC), Service Level Agreement (SLA) enforcement, ticket routing, incident triage, and ticket resolution workflows.
 
-This project documents my experience deploying osTicket in a local Windows lab environment. The goal was to get a help desk ticketing system running and troubleshoot the issues that came up during installation.
+---
 
-## Environment
+## 🛠️ Tech Stack & Environment
+* **Web Server Stack:** XAMPP (Apache, MySQL, PHP)
+* **Database Management:** phpMyAdmin & MySQL
+* **Ticketing System:** osTicket v1.17+
+* **Virtualization:** Oracle VirtualBox (Windows Server 2022 / Windows 11)
 
-- Windows virtual machine
-- XAMPP
-- Apache
-- PHP
-- MariaDB
-- phpMyAdmin
-- osTicket
+---
 
-## Setup and Troubleshooting
+## 🚀 Key Implementation & Troubleshooting Steps
 
-## 1. Configuring the Web Server
+### 1. Web Server & Database Authentication Configuration
+* Deployed osTicket within XAMPP and resolved port conflicts between Apache and IIS.
+* Configured local database connection settings inside `config.inc.php` (`auth_type = 'cookie'`) to resolve authentication parameters and gain administrative access via phpMyAdmin.
 
-I used XAMPP to run the services needed for osTicket. Apache initially conflicted with IIS because both were using port 80, so I configured Apache to use port 8080.
+![Database Configuration](config_setup.png)
 
-2. Installing osTicket:
+---
 
-I downloaded and extracted osTicket into the XAMPP web directory and accessed the installer through the local web server.
+### 2. User Provisioning & Role-Based Access Control (RBAC)
+* Created support agent profiles (e.g., `SuperRick005`) and configured granular role permissions to enforce least-privilege security standards.
+* Established organizational departments (e.g., *System Administration*, *Support*) for structured ticket allocation and routing.
 
-3. Troubleshooting Installation Errors:
+![Agent Setup](agent_setup.png)
+![Department Setup](osticket_department_setup.png)
 
-During installation, I encountered HTTP 404 and HTTP 500 errors. I checked the Apache error log at C:\xampp\apache\logs\error.log to investigate the problem.
+---
 
-The log revealed a database authentication error:
+### 3. Service Level Agreements (SLAs) & Help Topics
+* Configured custom SLA response policies (e.g., **SEV-1 Emergency** with a 1-hour grace period) to prioritize urgent outages over routine service requests.
+* Mapped user help topics to automatically trigger SLA rules and departmental routing upon ticket creation.
 
-Access denied for user 'root'@'localhost' (using password: YES)
+![SLA Configuration](sla_plans_setup.png)
 
-I investigated the MariaDB account configuration through phpMyAdmin and updated the database account password to resolve the authentication issue.
+---
 
-4. Successful Installation:
+### 4. Incident Triage & Impact Prioritization
+Simulated a real-world multi-ticket incoming queue to demonstrate IT Service Management (ITSM) incident triage based on **Business Impact vs. Urgency**:
 
-After correcting the database authentication issue, I reran the installer and received the successful installation confirmation. I then accessed the osTicket Staff Control Panel.
+* **Emergency Priority (`Printers on 4th floor are down`):** Assigned top priority due to multi-user business impact stopping workflow across an entire floor. Mapped to the `SEV-1 Emergency` 1-hour SLA.
+* **High Priority (`Executive Account Issues`):** Prioritized for immediate follow-up and communication due to high organizational visibility, queued directly after critical site/hardware outage resolution.
+* **Normal Priority (`Standard Password Reset`):** Processed through standard helpdesk SLA workflow without disrupting high-impact incidents.
 
-Results:
+![Ticket Triage Queue](ticket_triage_queue.png)
 
-Configured Apache to run on port 8080 alongside IIS.
+---
 
-Created the osTicket database through phpMyAdmin.
+### 5. End-to-End Ticket Lifecycle Simulation
+* **Creation:** Simulated end-user ticket submission via the customer portal (`http://localhost:8080/osticket/`).
+* **Assignment & Communication:** Logged into the Agent Control Panel (`/scp`), claimed ownership of tickets, and communicated reset instructions directly to the end-user.
+* **Resolution:** Verified ticket updates within the audit log and updated status to **Closed**.
 
-Used Apache error logs to identify a database authentication issue.
+![Ticket Resolved](ticket_resolved.png)
 
-Successfully installed osTicket and accessed the Staff Control Panel.
+---
 
-Future Improvements:
-
-Document a complete ticket submission and resolution workflow.
-
-Capture screenshots of the working installation and troubleshooting process.
-
-Review post-installation security settings and remove installation files if still present.
-
-Explore agent accounts, departments, and ticket permissions.
-
-Notes:
-
-This is a local learning lab, not a production deployment. Credentials and passwords are intentionally excluded from this documentation.
+## 💡 Key Skills Demonstrated
+* **IT Service Management (ITSM):** SLA enforcement, incident triage, ticket routing, and escalation management.
+* **System Administration:** Apache/MySQL database configuration, web server management, and user privilege assignment.
+* **Troubleshooting:** Resolving port conflicts, authentication errors, and database access settings.
